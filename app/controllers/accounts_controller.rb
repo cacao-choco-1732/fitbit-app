@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   def index
-    FitbitAccount.all
+    @fitbit_accounts = FitbitAccount.all
   end
 
   def new
@@ -15,6 +15,12 @@ class AccountsController < ApplicationController
     end
 
     @fitbit_account.save!
+    redirect_to accounts_path
+  end
+
+  def destroy
+    fitbit_account = FitbitAccount.find(params[:id])
+    fitbit_account.destroy!
     redirect_to accounts_path
   end
 
