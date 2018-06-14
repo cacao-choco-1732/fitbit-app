@@ -20,7 +20,18 @@ class AccountsController < ApplicationController
 
   def destroy
     fitbit_account = FitbitAccount.find(params[:id])
+    raise if fitbit_account.active?
     fitbit_account.destroy!
+    redirect_to accounts_path
+  end
+
+  def activate
+    ApplicationRecord.transaction do
+      FitbitAccount.active.first.try(:inactive!)
+      fitbit_account = FitbitAccount.find(params[:id])
+      fitbit_account.active!
+    end
+
     redirect_to accounts_path
   end
 

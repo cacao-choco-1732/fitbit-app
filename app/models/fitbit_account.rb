@@ -5,4 +5,6 @@ class FitbitAccount < ApplicationRecord
   validates :scopes, presence: true
   validates :user_id, presence: true
   validates :token, presence: true
+
+  enum status: { active: 1, inactive: 0 }
 end

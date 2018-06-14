@@ -7,6 +7,7 @@ class CreateFitbitAccounts < ActiveRecord::Migration[5.2]
       t.string :user_id
       t.string :token
       t.string :refresh_token
+      t.integer :status, default: 0
       t.timestamps
     end
   end

@@ -15,8 +15,8 @@
                     th No.
                     th Client id
                     th User id
-                    th Activate
-                    th
+                    th Status
+                    th Operation
                 tbody
                   - @fitbit_accounts.each_with_index do |fitbit_account, index|
                     tr
@@ -24,10 +24,19 @@
                       td = fitbit_account.client_id
                       td = fitbit_account.user_id
                       td
-                        button.btn.btn-inverse-primary.btn-rounded.btn-fw Enable
+                        - if fitbit_account.inactive?
+                          label.badge.badge-danger Inactive
+                        - else
+                          label.badge.badge-success Active
                       td
-                        = link_to account_path(fitbit_account), method: :delete, data: { confirm: 'Are you sure?' } do
-                          button.btn.btn-inverse-danger.btn-rounded.btn-fw Remove
+                        - if fitbit_account.inactive?
+                          = link_to activate_account_path(fitbit_account), method: :post, data: { confirm: 'Are you sure?' } do
+                            button.btn.btn-inverse-primary.btn-rounded.btn-fw Enabled
+                          = link_to account_path(fitbit_account), method: :delete, data: { confirm: 'Are you sure?' } do
+                            button.btn.btn-inverse-danger.btn-rounded.btn-fw.ml-2 Remove
+                        - else
+                          button.btn.btn-inverse-primary.btn-rounded.btn-fw.disabled Enabled
+                          button.btn.btn-inverse-danger.btn-rounded.btn-fw.ml-2.disabled Remove
   /! partial:partials/_footer.html
   footer.footer
     .container-fluid.clearfix

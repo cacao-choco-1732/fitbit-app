@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_06_07_231756) do
     t.string "user_id"
     t.string "token"
     t.string "refresh_token"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
