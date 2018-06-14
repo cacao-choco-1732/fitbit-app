@@ -5,8 +5,8 @@ class CreateFitbitAccounts < ActiveRecord::Migration[5.2]
       t.string :client_secret
       t.string :scopes
       t.string :user_id
-      t.string :token
-      t.string :refresh_token
+      t.string :token, limit: 1024
+      t.string :refresh_token, limit: 1024
       t.integer :status, default: 0
       t.timestamps
     end
