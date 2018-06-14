@@ -1,0 +1,33 @@
+nav.navbar.default-layout.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row
+  / .text-center.navbar-brand-wrapper.d-flex.align-items-top.justify-content-center
+    a.navbar-brand.brand-logo href="index.html"
+      img alt="logo" src="images/logo.svg" /
+    a.navbar-brand.brand-logo-mini href="index.html"
+      img alt="logo" src="images/logo-mini.svg" /
+  .navbar-menu-wrapper.d-flex.align-items-center
+    ul.navbar-nav.navbar-nav-left.header-links.d-none.d-md-flex
+      li.nav-item.active
+        a.nav-link href="#"
+          i.mdi.mdi-elevation-rise
+          | Accounts
+      li.nav-item
+        a.nav-link href="#"
+          i.mdi.mdi-elevation-rise
+          | Reports
+    ul.navbar-nav.navbar-nav-right
+      li.nav-item.dropdown.d-none.d-xl-inline-block
+        a#UserDropdown.nav-link.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#"
+        .dropdown-menu.dropdown-menu-right.navbar-dropdown aria-labelledby="UserDropdown"
+          a.dropdown-item.p-0
+          .d-flex.border-bottom
+            .py-3.px-4.d-flex.align-items-center.justify-content-center
+              i.mdi.mdi-bookmark-plus-outline.mr-0.text-gray
+            .py-3.px-4.d-flex.align-items-center.justify-content-center.border-left.border-right
+              i.mdi.mdi-account-outline.mr-0.text-gray
+            .py-3.px-4.d-flex.align-items-center.justify-content-center
+              i.mdi.mdi-alarm-check.mr-0.text-gray
+          a.dropdown-item.mt-2
+            | Sign Out
+
+    button.navbar-toggler.navbar-toggler-right.d-lg-none.align-self-center data-toggle="offcanvas" type="button"
+      span.icon-menu

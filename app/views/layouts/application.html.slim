@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title FitbitApp
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .container-scroller
+      /! partial:partials/_navbar.html
+      = render 'common/navbar'
+      .container-fluid.page-body-wrapper
+        / = render 'common/sidebar'
+        = yield
