@@ -1,0 +1,40 @@
+.main-panel
+  .content-wrapper
+    .row
+      .col-12.grid-margin
+        .card
+          .card-body
+            h4.card-title fitbit account
+            - if @fitbit_account.errors.full_messages.present?
+              .alert.alert-danger
+                - @fitbit_account.errors.full_messages.each do |message|
+                  p = message
+            = form_for @fitbit_account, url: accounts_path do |f|
+              .row
+                .col-md-6
+                  .form-group.row
+                    label.col-sm-3.col-form-label Client id
+                    .col-sm-9
+                      = f.text_field :client_id, class: 'form-control'
+                  .form-group.row
+                    label.col-sm-3.col-form-label Client secret
+                    .col-sm-9
+                      = f.text_field :client_secret, class: 'form-control'
+                  .form-group.row
+                    label.col-sm-3.col-form-label Scopes
+                    .col-sm-9
+                      = f.text_field :scopes, class: 'form-control'
+                  .form-group.row
+                    label.col-sm-3.col-form-label User id
+                    .col-sm-9
+                      = f.text_field :user_id, class: 'form-control'
+                  .form-group.row
+                    label.col-sm-3.col-form-label Access token
+                    .col-sm-9
+                      = f.text_field :token, class: 'form-control'
+                  .form-group.row
+                    label.col-sm-3.col-form-label Refresh token
+                    .col-sm-9
+                      = f.text_field :refresh_token, class: 'form-control'
+                  .form-group.row
+                      = f.submit 'Submit', class: 'btn btn-success mr-2'
