@@ -1,3 +1,4 @@
+# fitbit アカウントコントローラー
 class AccountsController < ApplicationController
   def index
     @fitbit_accounts = FitbitAccount.all
@@ -39,6 +40,7 @@ class AccountsController < ApplicationController
 
   def required_params
     params.require(:fitbit_account).permit(
-      :client_id, :client_secret, :scopes, :user_id, :token, :refresh_token)
+      :client_id, :client_secret, :scopes, :user_id, :token, :refresh_token
+    )
   end
 end

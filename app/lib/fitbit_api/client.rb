@@ -61,7 +61,7 @@ module FitbitApi
     #
     # @return [String] base64エンコード結果
     def basic_authorization
-      Base64::encode64("#{fitbit_account.client_id}:#{fitbit_account.client_secret}")
+      Base64.encode64("#{fitbit_account.client_id}:#{fitbit_account.client_secret}")
     end
   end
 end
