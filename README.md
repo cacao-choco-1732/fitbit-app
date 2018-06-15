@@ -1,24 +1,32 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[fitbit WebAPI](https://dev.fitbit.com/build/reference/web-api/)と連携し、データ蓄積と参照を目的とするアプリケーションです。
 
-Things you may want to cover:
+## Versions
 
-* Ruby version
+- `Rbuy 2.4.2`
+- `MySQL 5.7`
 
-* System dependencies
+## Installation
 
-* Configuration
+    $ git clone git@github.com:cacao-choco-1732/fitbit-app.git
+    $ cd fitbit-app
+    $ bundle install --path vendor/bundle
 
-* Database creation
+    # Env settings
+    $ cp .env-sample .env
+    $ vi .env             # set your mysql user and password
 
-* Database initialization
+    # Database creation
+    $ bundle exec rake db:create
 
-* How to run the test suite
+    # Database initialization
+    $ bundle exec rake db:migrate
 
-* Services (job queues, cache servers, search engines, etc.)
+## Run the test suite
 
-* Deployment instructions
+* ...
+
+## Deployment instructions
 
 * ...
