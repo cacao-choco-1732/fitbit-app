@@ -23,23 +23,19 @@ module FitbitApi
       }
 
       refresh_token_response = post(Settings.fitbit.token_endpoint, params, headers)
-      refresh_token_value = FitbitApi::Responses::RefreshToken.new(JSON.parse(refresh_token_response.body))
+      refresh_token_value = FitbitApi::RefreshToken.new(JSON.parse(refresh_token_response.body))
 
       fitbit_account.token = refresh_token_value.access_token
       fitbit_account.refresh_token = refresh_token_value.refresh_token
       fitbit_account.save
     end
 
-    # ユーザプロフィール取得
+    # GET
     #
-    # @see https://dev.fitbit.com/build/reference/web-api/user/
-    def profile
-      RestClient.get("#{endpoint}/#{fitbit_account.user_id}/profile.json", authorization)
+    # @param [String] resource_url 取得先リソース
+    def get(resource_url)
+      RestClient.get("#{endpoint}/#{fitbit_account.user_id}/#{resource_url}", authorization)
     end
-
-    private
-
-    attr_reader :endpoint, :fitbit_account
 
     # POST
     #
@@ -49,6 +45,12 @@ module FitbitApi
     def post(url, params, headers)
       RestClient.post(url, params, headers)
     end
+
+    delegate :id, to: :fitbit_account, prefix: true
+
+    private
+
+    attr_reader :endpoint, :fitbit_account
 
     # Authorization
     #

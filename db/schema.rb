@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_07_231756) do
+ActiveRecord::Schema.define(version: 2018_06_15_065702) do
+
+  create_table "activity_steps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "fitbit_account_id", null: false
+    t.date "tracking_date"
+    t.integer "step"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fitbit_account_id", "tracking_date"], name: "index_activity_steps_on_fitbit_account_id_and_tracking_date", unique: true
+  end
 
   create_table "fitbit_accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "client_id"
