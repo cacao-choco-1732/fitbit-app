@@ -1,17 +1,12 @@
 nav.navbar.default-layout.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row
-  / .text-center.navbar-brand-wrapper.d-flex.align-items-top.justify-content-center
-    a.navbar-brand.brand-logo href="index.html"
-      img alt="logo" src="images/logo.svg" /
-    a.navbar-brand.brand-logo-mini href="index.html"
-      img alt="logo" src="images/logo-mini.svg" /
   .navbar-menu-wrapper.d-flex.align-items-center
     ul.navbar-nav.navbar-nav-left.header-links.d-none.d-md-flex
-      li.nav-item.active
-        a.nav-link href="#"
+      li.nav-item class="#{current_page?(accounts_path) ? 'active' : ''}"
+        a.nav-link href=accounts_path
           i.mdi.mdi-elevation-rise
           | Accounts
-      li.nav-item
-        a.nav-link href="#"
+      li.nav-item class="#{current_page?(reports_activity_steps_path) ? 'active' : ''}"
+        a.nav-link href=reports_activity_steps_path
           i.mdi.mdi-elevation-rise
           | Reports
     ul.navbar-nav.navbar-nav-right

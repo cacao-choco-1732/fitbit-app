@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'chart-js-rails'
 gem 'config'
 gem 'font-awesome-rails'
 gem 'jquery-rails'

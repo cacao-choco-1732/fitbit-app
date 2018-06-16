@@ -1,0 +1,35 @@
+.main-panel
+  .content-wrapper
+    .row
+      .col-lg-12.grid-margin.stretch-card
+        .card
+          .card-body
+            h4.card-title activity step
+            canvas#myChart width="400" height="100"
+
+javascript:
+  var chart_labels = #{{ @chart_labels.to_json }};
+  var chart_data = #{{ @chart_data.to_json }};
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+          label: 'step',
+          data: chart_data,
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });

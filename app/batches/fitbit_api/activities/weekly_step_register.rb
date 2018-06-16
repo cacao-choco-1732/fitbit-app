@@ -13,7 +13,7 @@ module FitbitApi
 
       # メイン処理
       def run
-        body = JSON.parse(get_1week_steps.body)
+        body = JSON.parse(weekly_steps.body)
         body['activities-steps'].each do |step|
           activity_step = ActivityStep.find_or_initialize_by(
             fitbit_account_id: api_client.fitbit_account_id,
@@ -31,7 +31,7 @@ module FitbitApi
       # 1週間分のデータ取得
       #
       # @return [Array<Hash>] [{"dateTime" => "2018-06-09", "value" => "10918"},...]
-      def get_1week_steps
+      def weekly_steps
         # {
         #   "activities-steps":[
         #     {"dateTime":"2018-06-07","value":"10164"},

@@ -7,4 +7,7 @@ Rails.application.routes.draw do
       post :activate
     end
   end
+  namespace :reports do
+    resources :activity_steps, only: %i(index)
+  end
 end
