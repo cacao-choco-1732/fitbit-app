@@ -4,7 +4,7 @@
 
 ## Versions
 
-- `Rbuy 2.4.2`
+- `Ruby 2.4.2`
 - `MySQL 5.7`
 
 ## Installation
