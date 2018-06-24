@@ -1,13 +1,11 @@
 module FitbitApi
   module Activities
     # 1週間分の歩数を取得して登録する
-    class WeeklyStepRegister
+    class WeeklyStepRegister < BatchBase
       # 初期化
       #
-      # @param [FitbitApi::Client] api_client 連携クライアント
       # @param [String] date 取得基準日
-      def initialize(api_client, date)
-        @api_client = api_client
+      def initialize(date)
         @date = date
       end
 
@@ -16,7 +14,7 @@ module FitbitApi
         body = JSON.parse(weekly_steps.body)
         body['activities-steps'].each do |step|
           activity_step = ActivityStep.find_or_initialize_by(
-            fitbit_account_id: api_client.fitbit_account_id,
+            fitbit_account_id: fitbit_account.id,
             tracking_date: step['dateTime']
           )
           activity_step.step = step['value']
@@ -26,7 +24,7 @@ module FitbitApi
 
       private
 
-      attr_reader :api_client, :date
+      attr_reader :date
 
       # 1週間分のデータ取得
       #
@@ -43,7 +41,7 @@ module FitbitApi
         #     {"dateTime":"2018-06-13","value":"14611"}
         #   ]
         # }
-        api_client.get("activities/steps/date/#{date}/1w.json")
+        client.get("activities/steps/date/#{date}/1w.json")
       end
     end
   end

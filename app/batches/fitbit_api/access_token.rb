@@ -1,15 +1,8 @@
 module FitbitApi
   # アクセストークン
-  class AccessToken
-    # 初期化
-    #
-    # @param [FitbitAccount] fitbit_account 連携アカウント
-    def initialize(fitbit_account)
-      @fitbit_account = fitbit_account
-    end
-
+  class AccessToken < BatchBase
     # リフレッシュトークンを用いて、トークンを更新する
-    def refresh_token
+    def refresh_token!
       headers = {
         'Content-Type' => 'application/x-www-form-urlencoded',
         Authorization: "Basic #{basic_authorization}"
@@ -29,15 +22,6 @@ module FitbitApi
     end
 
     private
-
-    attr_reader :fitbit_account
-
-    # APIクライアント
-    #
-    # @return [FitbitApi::Client] APIクライアントインスタンス
-    def client
-      @client ||= Client.new(fitbit_account)
-    end
 
     # Basic認証
     #
