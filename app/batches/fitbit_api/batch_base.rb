@@ -3,15 +3,28 @@ module FitbitApi
   class BatchBase
     # 各継承先で定義しているrunメソッドの呼び出し
     def execute
-      run
-    rescue RestClient::Unauthorized
-      # retry
-      token_service.refresh_token!
-      fitbit_account.reload
-      run
+      retry_count = 0
+      success = false
+
+      while !success
+        begin
+          run
+          success = true
+        rescue RestClient::Unauthorized => ex
+          raise ex if MAX_RETRY_COUNT < retry_count
+
+          # retry
+          token_service.refresh_token!
+          fitbit_account.reload
+          retry_count += 1
+        end
+      end
     end
 
     private
+
+    MAX_RETRY_COUNT = 2
+    private_constant(:MAX_RETRY_COUNT)
 
     # 連携アカウント
     #
